@@ -1,4 +1,7 @@
+import 'dart:js';
+
 import 'package:flutter/material.dart';
+import '../screens/tela_detalhes_produto.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -18,9 +21,20 @@ class HomeScreen extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () {
-                // Adicione a ação para o botão de login aqui
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ProductDetailScreen(
+                      key: const Key("1"),
+                      productImage: "imagens/temaki_crocante.png",
+                      productName: "Temaki Crock",
+                      productDescription: "Empanado e Frito",
+                      productPrice: 28.00,
+                    ),
+                  ),
+                );
               },
-              child: const Text('Login'),
+              child: const Text('Cardápio'),
             ),
             const SizedBox(
               height: 20,
@@ -29,7 +43,7 @@ class HomeScreen extends StatelessWidget {
               onPressed: () {
                 // Adicione a ação para o botão de criar conta aqui
               },
-              child: const Text('Criar Conta'),
+              child: const Text('Entrar'),
             ),
           ],
         ),
