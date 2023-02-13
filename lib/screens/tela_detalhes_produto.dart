@@ -12,20 +12,18 @@ class ProductDetailScreen extends StatelessWidget {
     this.productImage,
     this.productPrice,
     this.productDescription,
+    int productQuantity,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(productName),
-      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
             SizedBox(
-              height: 300,
-              width: double.infinity,
+              height: 100,
+              width: 100,
               child: Image.asset(
                 productImage,
                 fit: BoxFit.cover,

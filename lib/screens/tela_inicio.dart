@@ -1,7 +1,5 @@
-import 'dart:js';
-
 import 'package:flutter/material.dart';
-import '../screens/tela_detalhes_produto.dart';
+import '../screens/tela_menu.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -24,13 +22,7 @@ class HomeScreen extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => ProductDetailScreen(
-                      key: const Key("1"),
-                      productImage: "imagens/temaki_crocante.png",
-                      productName: "Temaki Crock",
-                      productDescription: "Empanado e Frito",
-                      productPrice: 28.00,
-                    ),
+                    builder: (context) => MenuScreen(),
                   ),
                 );
               },
