@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../src/componentes/constantes.dart';
 import '../screens/tela_login.dart';
+import 'config/custom_colors.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +16,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Ôxe Sushi',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSwatch(primarySwatch: appTema),
+        colorScheme:
+            ColorScheme.fromSwatch(primarySwatch: CustomColors.colorAppTema),
       ),
       home: const Login(),
     );

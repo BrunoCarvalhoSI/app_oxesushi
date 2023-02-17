@@ -40,12 +40,13 @@ class _MenuScreenState extends State<MenuScreen> {
                       context,
                       MaterialPageRoute(
                         builder: (BuildContext context) => ProductDetailScreen(
-                            key: Key("123"),
-                            productDescription: 'temaki',
-                            productImage: ('imagens/temaki_crocante.png'),
-                            productPrice: 2500,
-                            productName: products[index],
-                            productQuantity: _quantity),
+                          key: const Key("123"),
+                          productDescription: 'temaki',
+                          productImage: ('imagens/temaki_crocante.png'),
+                          productPrice: 2500,
+                          productName: products[index],
+                          productQuantity: _quantity,
+                        ),
                       ),
                     );
                   },
