@@ -1,8 +1,9 @@
 // ignore: implementation_imports
 import 'package:flutter/material.dart';
+import 'base/tela_base.dart';
 import '../screens/tela_cadastro_usuario.dart';
-import '../config/custom_colors.dart';
-import '../src/componentes/custom_text_field.dart';
+import '../componentes/custom_colors.dart';
+import '../componentes/custom_text_field.dart';
 import 'tela_detalhes_produto.dart';
 
 class Login extends StatefulWidget {
@@ -118,7 +119,15 @@ class _LoginState extends State<Login> {
                             borderRadius: BorderRadius.circular(10),
                           ),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context).pushReplacement(
+                            MaterialPageRoute(
+                              builder: (c) {
+                                return const TelaBase();
+                              },
+                            ),
+                          );
+                        },
                         child: const Text(
                           "Entrar",
                           style: TextStyle(

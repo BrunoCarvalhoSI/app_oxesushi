@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:oxesushi_v1/config/custom_colors.dart';
-import 'package:oxesushi_v1/src/componentes/custom_text_field.dart';
+import '../componentes/custom_colors.dart';
+import '../componentes/custom_text_field.dart';
 
 import '../config/util.dart';
 

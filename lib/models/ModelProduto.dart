@@ -1,15 +1,19 @@
 // ignore_for_file: file_names
 
-class Produto {
+class ModelProduto {
   final String id;
   final String nome;
   final double preco;
   final String imageUrl;
+  final String descricao;
+  final String undMedida;
 
-  Produto({
+  ModelProduto({
     this.id,
     this.nome,
     this.preco,
     this.imageUrl,
+    this.descricao,
+    this.undMedida,
   });
 }
