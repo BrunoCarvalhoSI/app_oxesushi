@@ -1,16 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:oxesushi_v1/services/utils_services.dart';
+import 'package:oxesushi_v1/widgets/widget_quantidade.dart';
 import '../componentes/custom_colors.dart';
 import '../models/ModelProduto.dart';
 
-class DetalhesDoProduto extends StatelessWidget {
+class DetalhesDoProduto extends StatefulWidget {
   final ModelProduto produto;
-  final UtilsServices utilsServices = UtilsServices();
 
-  DetalhesDoProduto({
+  const DetalhesDoProduto({
     Key key,
     this.produto,
   }) : super(key: key);
+
+  @override
+  State<DetalhesDoProduto> createState() => _DetalhesDoProdutoState();
+}
+
+class _DetalhesDoProdutoState extends State<DetalhesDoProduto> {
+  final UtilsServices utilsServices = UtilsServices();
+
+  int qtdDoCarrinho = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +32,8 @@ class DetalhesDoProduto extends StatelessWidget {
             children: [
               Expanded(
                 child: Hero(
-                  tag: produto.imageUrl,
-                  child: Image.asset(produto.imageUrl),
+                  tag: widget.produto.imageUrl,
+                  child: Image.asset(widget.produto.imageUrl),
                 ),
               ),
               Expanded(
@@ -50,7 +59,7 @@ class DetalhesDoProduto extends StatelessWidget {
                         children: [
                           Expanded(
                             child: Text(
-                              produto.nome,
+                              widget.produto.nome,
                               maxLines: 2,
                               //coloca a ... caso o nome seja grande demais ja que a coluna ta limitada a 2 linhas
                               overflow: TextOverflow.ellipsis,
@@ -60,16 +69,20 @@ class DetalhesDoProduto extends StatelessWidget {
                               ),
                             ),
                           ),
-                          Container(
-                            height: 30,
-                            width: 70,
-                            color: Colors.red,
+                          WidgetQuantidade(
+                            quantidade: qtdDoCarrinho,
+                            sufixText: widget.produto.undMedida,
+                            result: (qtd) {
+                              setState(() {
+                                qtdDoCarrinho = qtd;
+                              });
+                            },
                           )
                         ],
                       ),
                       //Preco
                       Text(
-                        utilsServices.priceToCurrency(produto.preco),
+                        utilsServices.priceToCurrency(widget.produto.preco),
                         style: TextStyle(
                           fontSize: 23,
                           fontWeight: FontWeight.bold,
@@ -82,7 +95,7 @@ class DetalhesDoProduto extends StatelessWidget {
                           vertical: 10,
                         ),
                         child: Text(
-                          produto.descricao,
+                          widget.produto.descricao,
                           maxLines: 3,
                           style: const TextStyle(
                             height: 1.5,
