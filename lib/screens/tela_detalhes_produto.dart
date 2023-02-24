@@ -1,74 +1,149 @@
 import 'package:flutter/material.dart';
+import 'package:oxesushi_v1/services/utils_services.dart';
+import '../componentes/custom_colors.dart';
+import '../models/ModelProduto.dart';
 
-class ProductDetailScreen extends StatelessWidget {
-  final String productName;
-  final String productImage;
-  final double productPrice;
-  final String productDescription;
+class DetalhesDoProduto extends StatelessWidget {
+  final ModelProduto produto;
+  final UtilsServices utilsServices = UtilsServices();
 
-  ProductDetailScreen({
+  DetalhesDoProduto({
     Key key,
-    this.productName,
-    this.productImage,
-    this.productPrice,
-    this.productDescription,
-    int productQuantity,
+    this.produto,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            SizedBox(
-              height: 100,
-              width: 100,
-              child: Image.asset(
-                productImage,
-                fit: BoxFit.cover,
+      backgroundColor: CustomColors.colorAppTema,
+      body: Stack(
+        children: [
+          //Conteudo todo do produto
+          Column(
+            children: [
+              Expanded(
+                child: Hero(
+                  tag: produto.imageUrl,
+                  child: Image.asset(produto.imageUrl),
+                ),
+              ),
+              Expanded(
+                child: Container(
+                  padding: const EdgeInsets.all(32),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: const BorderRadius.vertical(
+                      top: Radius.circular(50),
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.shade600,
+                        offset: const Offset(0, 2),
+                      ),
+                    ],
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      //nome - quantidade
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              produto.nome,
+                              maxLines: 2,
+                              //coloca a ... caso o nome seja grande demais ja que a coluna ta limitada a 2 linhas
+                              overflow: TextOverflow.ellipsis,
+                              style: const TextStyle(
+                                fontSize: 27,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                          Container(
+                            height: 30,
+                            width: 70,
+                            color: Colors.red,
+                          )
+                        ],
+                      ),
+                      //Preco
+                      Text(
+                        utilsServices.priceToCurrency(produto.preco),
+                        style: TextStyle(
+                          fontSize: 23,
+                          fontWeight: FontWeight.bold,
+                          color: CustomColors.colorAppVerde,
+                        ),
+                      ),
+                      //descricao um pouco abaixo do preço com 3 linhas no max
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 10,
+                        ),
+                        child: Text(
+                          produto.descricao,
+                          maxLines: 3,
+                          style: const TextStyle(
+                            height: 1.5,
+                          ),
+                        ),
+                      ),
+                      //Todas os componentes do produto com barra de rolagem
+                      const Expanded(
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                            vertical: 10,
+                          ),
+                          child: SingleChildScrollView(),
+                        ),
+                      ),
+                      //Botao Adicionar Carrinho FIXO
+                      SizedBox(
+                        height: 55,
+                        child: ElevatedButton.icon(
+                          style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            backgroundColor: CustomColors.colorAppVerde,
+                          ),
+                          onPressed: () {},
+                          label: const Text(
+                            "Adicionar ao carrinho",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          icon: const Icon(
+                            Icons.shopping_cart_outlined,
+                            color: Colors.white,
+                          ),
+                        ),
+                      )
+                      //Radio Buttom - Array de Radios Buttom
+                      //Check Box - Array de check Box
+                    ],
+                  ),
+                ),
+              )
+            ],
+          ),
+          Positioned(
+            top: 10,
+            left: 10,
+            child: SafeArea(
+              child: IconButton(
+                onPressed: () => Navigator.of(context).pop(),
+                icon: const Icon(
+                  Icons.arrow_back,
+                  color: Colors.white,
+                ),
               ),
             ),
-            const SizedBox(
-              height: 20,
-            ),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    productName,
-                    style: const TextStyle(
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    'R\$ $productPrice',
-                    style: const TextStyle(
-                      fontSize: 20,
-                      color: Colors.grey,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    productDescription,
-                    style: const TextStyle(
-                      fontSize: 16,
-                      color: Colors.grey,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
+          )
+        ],
       ),
     );
   }

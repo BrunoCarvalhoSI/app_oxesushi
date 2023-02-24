@@ -18,7 +18,7 @@ class _MenuScreenState extends State<MenuScreen> {
       length: 3,
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Cardápio'),
+          title: const Text('Cardápio'),
           // ignore: prefer_const_constructors
           bottom: TabBar(
             tabs: const [
@@ -39,14 +39,8 @@ class _MenuScreenState extends State<MenuScreen> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (BuildContext context) => ProductDetailScreen(
-                          key: const Key("123"),
-                          productDescription: 'temaki',
-                          productImage: ('imagens/temaki_crocante.png'),
-                          productPrice: 2500,
-                          productName: products[index],
-                          productQuantity: _quantity,
-                        ),
+                        builder: (BuildContext context) =>
+                            DetalhesDoProduto(key: const Key("123")),
                       ),
                     );
                   },
@@ -54,8 +48,8 @@ class _MenuScreenState extends State<MenuScreen> {
                 );
               },
             ),
-            Center(child: Text('Hots')),
-            Center(child: Text('Crus')),
+            const Center(child: Text('Hots')),
+            const Center(child: Text('Crus')),
           ],
         ),
       ),

@@ -60,14 +60,8 @@ class _LoginState extends State<Login> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (BuildContext context) =>
-                              ProductDetailScreen(
+                          builder: (BuildContext context) => DetalhesDoProduto(
                             key: const Key("123"),
-                            productDescription: 'temaki',
-                            productImage: ('imagens/temaki_crocante.png'),
-                            productPrice: 2500,
-                            productName: 'dsa',
-                            productQuantity: 2,
                           ),
                         ),
                       );

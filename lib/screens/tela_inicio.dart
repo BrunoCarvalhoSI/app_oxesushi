@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import '../screens/tela_menu.dart';
 
 class HomeScreen extends StatelessWidget {
+  const HomeScreen({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +24,7 @@ class HomeScreen extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => MenuScreen(),
+                    builder: (context) => const MenuScreen(),
                   ),
                 );
               },
