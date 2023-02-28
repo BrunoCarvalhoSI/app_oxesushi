@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:oxesushi_v1/componentes/custom_colors.dart';
+import '../componentes/custom_colors.dart';
 
 class WidgetQuantidade extends StatelessWidget {
   final int quantidade;
-  final String sufixText;
+  final String suffixText;
   final Function(int qtd) result;
+  final bool isRemovable;
 
   const WidgetQuantidade({
     Key key,
     this.quantidade,
-    this.sufixText,
+    this.suffixText,
     this.result,
+    this.isRemovable = false,
   }) : super(key: key);
 
   @override
@@ -28,21 +30,25 @@ class WidgetQuantidade extends StatelessWidget {
         ],
       ),
       child: Row(
+        mainAxisSize: MainAxisSize.min,
         children: [
           _WidgetQuantidade(
-            icon: Icons.remove,
-            color: Colors.grey,
+            icon: !isRemovable || quantidade > 1
+                ? Icons.remove
+                : Icons.delete_forever,
+            color: !isRemovable || quantidade > 1 ? Colors.grey : Colors.red,
             onPressed: () {
-              if (quantidade == 1) return;
-
+              if (quantidade == 1 && !isRemovable) return;
               int resultCount = quantidade - 1;
               result(resultCount);
             },
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 6),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 6,
+            ),
             child: Text(
-              '$quantidade$sufixText',
+              '$quantidade$suffixText',
               style: const TextStyle(
                 fontSize: 15,
                 fontWeight: FontWeight.bold,

@@ -1,3 +1,4 @@
+import '../models/ModelItemCarrinho.dart';
 import '../models/ModelProduto.dart';
 
 ModelProduto niguiriSalmao = ModelProduto(
@@ -41,21 +42,21 @@ ModelProduto comboHotCamarao = ModelProduto(
   imageUrl: 'imagens/hotSalmao.png',
   nome: "Hot Camarão",
   preco: 17.00,
-  undMedida: "und(8)",
+  undMedida: "und",
 );
 ModelProduto comboHot30Pecas = ModelProduto(
   descricao: '10 hot salmão, 10 hot rool, 10 hot kani',
   imageUrl: 'imagens/hot30.png',
   nome: "Hot 30 Peças",
   preco: 55.00,
-  undMedida: "und(30)",
+  undMedida: "und",
 );
 ModelProduto comboPastel = ModelProduto(
   descricao: 'Combo de Pastel',
   imageUrl: 'imagens/hotCamarao.png',
-  nome: "Pastel 3 unidades",
+  nome: "Combo de Pastel",
   preco: 22.00,
-  undMedida: "und(3)",
+  undMedida: "und",
 );
 ModelProduto comboNutella = ModelProduto(
   descricao: 'Nutella',
@@ -84,4 +85,13 @@ List<String> categorias = [
   'Yakisoba',
   'Temaki',
   'Promoções',
+];
+
+List<ModelItemCarrinho> itensCarrinho = [
+  ModelItemCarrinho(item: niguiriSalmao, quantidade: 2),
+  ModelItemCarrinho(item: niguiriBarrigaSalmao, quantidade: 3),
+  ModelItemCarrinho(item: comboNutella, quantidade: 5),
+  ModelItemCarrinho(item: comboHot30Pecas, quantidade: 4),
+  ModelItemCarrinho(item: hotSalmao, quantidade: 1),
+  ModelItemCarrinho(item: hotRool, quantidade: 1),
 ];

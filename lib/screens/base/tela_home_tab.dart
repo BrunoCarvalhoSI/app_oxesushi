@@ -1,9 +1,9 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
-import 'package:oxesushi_v1/screens/base/componentes/produto_tile.dart';
+import 'package:oxesushi_v1/screens/base/componentes/tile_produto.dart';
 import '../../componentes/custom_colors.dart';
 import '../../config/mock_dados.dart' as mockDados;
-import 'componentes/categoria_tile.dart';
+import 'componentes/tile_categoria.dart';
 
 class TelaHome extends StatefulWidget {
   const TelaHome({Key key}) : super(key: key);

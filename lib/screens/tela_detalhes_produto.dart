@@ -71,7 +71,7 @@ class _DetalhesDoProdutoState extends State<DetalhesDoProduto> {
                           ),
                           WidgetQuantidade(
                             quantidade: qtdDoCarrinho,
-                            sufixText: widget.produto.undMedida,
+                            suffixText: widget.produto.undMedida,
                             result: (qtd) {
                               setState(() {
                                 qtdDoCarrinho = qtd;

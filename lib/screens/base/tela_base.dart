@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:oxesushi_v1/screens/carrinho/tela_carrinho_tab.dart';
 import '../base/tela_home_tab.dart';
 import '../../componentes/custom_colors.dart';
 
@@ -21,9 +22,7 @@ class _TelaBaseState extends State<TelaBase> {
         controller: pageControler,
         children: [
           const TelaHome(),
-          Container(
-            color: Colors.yellow,
-          ),
+          TelaCarrinho(),
           Container(
             color: Colors.blue,
           ),
