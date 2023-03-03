@@ -8,11 +8,13 @@ class CarrinhoTile extends StatefulWidget {
   final ModelItemCarrinho itemCarrinho;
 
   final Function(ModelItemCarrinho) remove;
+  final Function(int) atualizarTotalCarrinho;
 
   const CarrinhoTile({
     Key key,
     this.itemCarrinho,
     this.remove,
+    this.atualizarTotalCarrinho,
   }) : super(key: key);
 
   @override
@@ -56,15 +58,7 @@ class _CarrinhoTileState extends State<CarrinhoTile> {
         trailing: WidgetQuantidade(
           suffixText: widget.itemCarrinho.item.undMedida,
           quantidade: widget.itemCarrinho.quantidade,
-          result: (qtd) {
-            setState(() { 
-              widget.itemCarrinho.quantidade = qtd;
-              if (qtd == 0) {
-                // Remover item do carrinho
-                widget.remove(widget.itemCarrinho);
-              }
-            });
-          },
+          result: widget.atualizarTotalCarrinho,
           isRemovable: true,
         ),
       ),

@@ -60,8 +60,9 @@ class _LoginState extends State<Login> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (BuildContext context) => DetalhesDoProduto(
-                            key: const Key("123"),
+                          builder: (BuildContext context) =>
+                              const DetalhesDoProduto(
+                            key: Key("123"),
                           ),
                         ),
                       );

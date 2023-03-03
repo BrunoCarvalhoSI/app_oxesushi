@@ -4,6 +4,7 @@ import 'package:oxesushi_v1/screens/carrinho/componentes/tile_carrinho.dart';
 import 'package:oxesushi_v1/services/utils_services.dart';
 import 'package:oxesushi_v1/config/mock_dados.dart' as mock;
 import '../../models/ModelItemCarrinho.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class TelaCarrinho extends StatefulWidget {
   const TelaCarrinho({Key key}) : super(key: key);
@@ -21,10 +22,18 @@ class _TelaCarrinhoState extends State<TelaCarrinho> {
     });
   }
 
+  double precoTotalCarrinho() {
+    double total = 0;
+    for (var item in mock.itensCarrinho) {
+      total += item.precoTotal();
+    }
+    return total;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade700,
+      //backgroundColor: Colors.grey.shade700,
       appBar: AppBar(
         title: const Text("Carrinho"),
       ),
@@ -35,9 +44,16 @@ class _TelaCarrinhoState extends State<TelaCarrinho> {
               itemCount: mock.itensCarrinho.length,
               itemBuilder: (_, index) {
                 return CarrinhoTile(
-                  itemCarrinho: mock.itensCarrinho[index],
-                  remove: removerItemCarrinho,
-                );
+                    itemCarrinho: mock.itensCarrinho[index],
+                    remove: removerItemCarrinho,
+                    atualizarTotalCarrinho: (qtd) {
+                      if (qtd == 0) {
+                        removerItemCarrinho(mock.itensCarrinho[index]);
+                      } else {
+                        setState(
+                            () => mock.itensCarrinho[index].quantidade = qtd);
+                      }
+                    });
               },
             ),
           ),
@@ -56,6 +72,7 @@ class _TelaCarrinhoState extends State<TelaCarrinho> {
                 ),
               ],
             ),
+            //VALOR TOTAL DO CARRINHO
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
@@ -66,7 +83,7 @@ class _TelaCarrinhoState extends State<TelaCarrinho> {
                   ),
                 ),
                 Text(
-                  utilsServices.priceToCurrency(50.0),
+                  utilsServices.priceToCurrency(precoTotalCarrinho()),
                   style: TextStyle(
                     fontSize: 23,
                     color: CustomColors.colorAppVerde,
@@ -81,7 +98,10 @@ class _TelaCarrinhoState extends State<TelaCarrinho> {
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: () async {
+                      bool result = await mostrarConfirmarPedido();
+                      print(result);
+                    },
                     child: const Text(
                       "Concluir pedido",
                       style: TextStyle(fontSize: 18),
@@ -94,5 +114,46 @@ class _TelaCarrinhoState extends State<TelaCarrinho> {
         ],
       ),
     );
+  }
+
+  Future<bool> mostrarConfirmarPedido() async {
+    final result = await showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15),
+          ),
+          title: const Text("Confirmação"),
+          content: const Text("Deseja concluir o pedido ?"),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(false),
+              child: const Text("Não"),
+            ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: CustomColors.colorAppVerde,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                ),
+              ),
+              onPressed: () => Navigator.of(context).pop(true),
+              child: const Text(
+                "Sim",
+                style: TextStyle(fontSize: 18),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+    if (result == true) {
+      // Concluir pedido
+      return result;
+    } else {
+      // Não concluir pedido
+      return result;
+    }
   }
 }
