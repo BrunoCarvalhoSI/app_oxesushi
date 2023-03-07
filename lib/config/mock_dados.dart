@@ -1,3 +1,5 @@
+import '../models/ModelPedidos.dart';
+import '../models/ModelUsuario.dart';
 import '../models/ModelItemCarrinho.dart';
 import '../models/ModelProduto.dart';
 
@@ -8,7 +10,6 @@ ModelProduto niguiriSalmao = ModelProduto(
   preco: 3.50,
   undMedida: "und",
 );
-
 ModelProduto niguiriBarrigaSalmao = ModelProduto(
   descricao: 'Arroz com fatia de Salmão Maçaricado',
   imageUrl: 'imagens/niguiriBarriga.png',
@@ -66,6 +67,14 @@ ModelProduto comboNutella = ModelProduto(
   undMedida: "und",
 );
 
+ModelUsuario usuario = ModelUsuario(
+  celular: '79 9 9919-4590',
+  cpf: '023.247.305.62',
+  email: 'brunocarvalhoifs@gmail.com',
+  nome: 'Bruno Carvalho',
+  senha: "123546",
+);
+
 List<ModelProduto> listaProdutos = [
   niguiriSalmao,
   niguiriBarrigaSalmao,
@@ -94,4 +103,28 @@ List<ModelItemCarrinho> itensCarrinho = [
   ModelItemCarrinho(item: comboHot30Pecas, quantidade: 4),
   ModelItemCarrinho(item: hotSalmao, quantidade: 1),
   ModelItemCarrinho(item: hotRool, quantidade: 1),
+];
+
+List<ModelPedido> pedidos = [
+  ModelPedido(
+    id: "10",
+    total: 50.0,
+    copyAndPaste: "dsasdaadsd",
+    dataCriacao: DateTime.parse(
+      '2023-01-01 10:05:10.250',
+    ),
+    validadeQRCode: DateTime.parse(
+      '2023-01-01 11:11:11.250',
+    ),
+    itensPedido: [
+      ModelItemCarrinho(item: comboHot30Pecas, quantidade: 5),
+      ModelItemCarrinho(item: comboPastel, quantidade: 1),
+      ModelItemCarrinho(item: niguiriBarrigaSalmao, quantidade: 10),
+      ModelItemCarrinho(item: niguiriSalmao, quantidade: 20),
+      ModelItemCarrinho(item: hotKani, quantidade: 10),
+      ModelItemCarrinho(item: hotRool, quantidade: 8),
+      ModelItemCarrinho(item: hotRool, quantidade: 8),
+      ModelItemCarrinho(item: hotRool, quantidade: 8),
+    ],
+  )
 ];

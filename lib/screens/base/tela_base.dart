@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:oxesushi_v1/screens/carrinho/tela_carrinho_tab.dart';
-import '../base/tela_home_tab.dart';
+
 import '../../componentes/custom_colors.dart';
+import '../carrinho/tela_carrinho_tab.dart';
+import '../base/tela_home_tab.dart';
+import '../pedidos/tela_pedidos_tab.dart';
+import '../perfil/tela_perfil_tab.dart';
 
 class TelaBase extends StatefulWidget {
   const TelaBase({Key key}) : super(key: key);
@@ -20,15 +23,11 @@ class _TelaBaseState extends State<TelaBase> {
       body: PageView(
         physics: const NeverScrollableScrollPhysics(),
         controller: pageControler,
-        children: [
-          const TelaHome(),
+        children: const [
+          TelaHome(),
           TelaCarrinho(),
-          Container(
-            color: Colors.blue,
-          ),
-          Container(
-            color: Colors.purple,
-          )
+          TelaPedidos(),
+          TelaPerfil(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(

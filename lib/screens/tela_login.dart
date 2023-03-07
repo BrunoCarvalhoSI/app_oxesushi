@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'base/tela_base.dart';
 import '../screens/tela_cadastro_usuario.dart';
 import '../componentes/custom_colors.dart';
-import '../componentes/custom_text_field.dart';
+import '../widgets/custom_text_field.dart';
 import 'tela_detalhes_produto.dart';
 
 class Login extends StatefulWidget {

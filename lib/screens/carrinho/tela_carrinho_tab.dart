@@ -4,7 +4,6 @@ import 'package:oxesushi_v1/screens/carrinho/componentes/tile_carrinho.dart';
 import 'package:oxesushi_v1/services/utils_services.dart';
 import 'package:oxesushi_v1/config/mock_dados.dart' as mock;
 import '../../models/ModelItemCarrinho.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class TelaCarrinho extends StatefulWidget {
   const TelaCarrinho({Key key}) : super(key: key);

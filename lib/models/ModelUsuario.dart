@@ -1,9 +1,19 @@
 // ignore_for_file: file_names
 
-class Usuario {
+class ModelUsuario {
   final String id;
   final String email;
-  final String password;
+  final String senha;
+  final String nome;
+  final String cpf;
+  final String celular;
 
-  Usuario({this.id, this.email, this.password});
+  ModelUsuario({
+    this.id,
+    this.email,
+    this.senha,
+    this.nome,
+    this.cpf,
+    this.celular,
+  });
 }
