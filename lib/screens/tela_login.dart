@@ -48,12 +48,11 @@ class _LoginState extends State<Login> {
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      boxShadow: const [
+                      boxShadow: [
                         BoxShadow(
-                          color: Colors.white,
-                          offset: Offset(0, 5),
-                          blurRadius: 10,
-                          spreadRadius: -5,
+                          color: Colors.grey.shade300,
+                          blurRadius: 3,
+                          spreadRadius: 2,
                         ),
                       ],
                     ),
