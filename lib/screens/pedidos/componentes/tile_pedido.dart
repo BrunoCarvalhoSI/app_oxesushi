@@ -50,6 +50,7 @@ class PedidoTile extends StatelessWidget {
           children: [
             IntrinsicHeight(
               child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   //lista de itens
                   Expanded(
