@@ -5,63 +5,63 @@ import '../models/ModelProduto.dart';
 
 ModelProduto niguiriSalmao = ModelProduto(
   descricao: 'Arroz com fatia de Salmão',
-  imageUrl: 'imagens/niguiriTransparente.png',
+  imageUrl: 'imagens/imagens_produtos/niguiriTransparente.png',
   nome: "Niguiri de Salmão",
   preco: 3.50,
   undMedida: "und",
 );
 ModelProduto niguiriBarrigaSalmao = ModelProduto(
   descricao: 'Arroz com fatia de Salmão Maçaricado',
-  imageUrl: 'imagens/niguiriBarriga.png',
+  imageUrl: 'imagens/imagens_produtos/niguiriBarriga.png',
   nome: "Niguiri Barriga",
   preco: 3.00,
   undMedida: "und",
 );
 ModelProduto hotRool = ModelProduto(
   descricao: 'Salmão,Camarão,Kani,Arroz na massinha',
-  imageUrl: 'imagens/hotRool.png',
+  imageUrl: 'imagens/imagens_produtos/hotRool.png',
   nome: "Hot Rool",
   preco: 2.00,
   undMedida: "und",
 );
 ModelProduto hotSalmao = ModelProduto(
   descricao: 'Salmão',
-  imageUrl: 'imagens/hotCamarao.png',
+  imageUrl: 'imagens/imagens_produtos/hotCamarao.png',
   nome: "Hot Salmão",
   preco: 2.50,
   undMedida: "und",
 );
 ModelProduto hotKani = ModelProduto(
   descricao: 'Kani',
-  imageUrl: 'imagens/hotCamarao.png',
+  imageUrl: 'imagens/imagens_produtos/hotCamarao.png',
   nome: "Hot Kani",
   preco: 2.00,
   undMedida: "und",
 );
 ModelProduto comboHotCamarao = ModelProduto(
   descricao: '18 unidades de Combo hot Camarão',
-  imageUrl: 'imagens/hotSalmao.png',
+  imageUrl: 'imagens/imagens_produtos/hotSalmao.png',
   nome: "Hot Camarão",
   preco: 17.00,
   undMedida: "und",
 );
 ModelProduto comboHot30Pecas = ModelProduto(
   descricao: '10 hot salmão, 10 hot rool, 10 hot kani',
-  imageUrl: 'imagens/hot30.png',
+  imageUrl: 'imagens/imagens_produtos/hot30.png',
   nome: "Hot 30 Peças",
   preco: 55.00,
   undMedida: "und",
 );
 ModelProduto comboPastel = ModelProduto(
   descricao: 'Combo de Pastel',
-  imageUrl: 'imagens/hotCamarao.png',
+  imageUrl: 'imagens/imagens_produtos/hotCamarao.png',
   nome: "Combo de Pastel",
   preco: 22.00,
   undMedida: "und",
 );
 ModelProduto comboNutella = ModelProduto(
   descricao: 'Nutella',
-  imageUrl: 'imagens/hotCamarao.png',
+  imageUrl: 'imagens/imagens_produtos/hotCamarao.png',
   nome: "Combo de Nutella",
   preco: 17.00,
   undMedida: "und",
@@ -105,11 +105,26 @@ List<ModelItemCarrinho> itensCarrinho = [
   ModelItemCarrinho(item: hotRool, quantidade: 1),
 ];
 
+//final Map<String, int> todosStatus = <String, int>{
+// 'Pedido em analise': 0,
+//'Pedido recusado': 1,
+//'Pedido aceito': 2,
+//'Pix vencido': 3,
+//'Pagamento efetuado': 4,
+//'Em produção': 5,
+//'Enviado': 6,
+//'Entregue': 7,
+//'Pedido cancelado': -1,
+//'Pagamento devolvido': -2,
+// };
+
 List<ModelPedido> pedidos = [
+  //Pedido 1
   ModelPedido(
-    id: "10",
+    id: "FBHK-1025",
     total: 50.0,
     copyAndPaste: "dsasdaadsd",
+    statusPedido: "Pedido recusado",
     dataCriacao: DateTime.parse(
       '2023-01-01 10:05:10.250',
     ),
@@ -125,6 +140,91 @@ List<ModelPedido> pedidos = [
       ModelItemCarrinho(item: hotRool, quantidade: 8),
       ModelItemCarrinho(item: hotRool, quantidade: 8),
       ModelItemCarrinho(item: hotRool, quantidade: 8),
+      ModelItemCarrinho(item: hotKani, quantidade: 10),
+      ModelItemCarrinho(item: hotRool, quantidade: 8),
+      ModelItemCarrinho(item: hotRool, quantidade: 8),
+      ModelItemCarrinho(item: hotRool, quantidade: 8),
     ],
-  )
+  ),
+  //PEDIDO 2
+  ModelPedido(
+    id: "ASKD-0521",
+    total: 50.0,
+    copyAndPaste: "dsasdaadsd",
+    statusPedido: "Em produção",
+    dataCriacao: DateTime.parse(
+      '2024-01-01 10:05:10.250',
+    ),
+    validadeQRCode: DateTime.parse(
+      '2024-01-01 11:11:11.250',
+    ),
+    itensPedido: [
+      ModelItemCarrinho(item: comboHot30Pecas, quantidade: 5),
+      ModelItemCarrinho(item: comboPastel, quantidade: 1),
+      ModelItemCarrinho(item: niguiriBarrigaSalmao, quantidade: 10),
+      ModelItemCarrinho(item: niguiriSalmao, quantidade: 20),
+      ModelItemCarrinho(item: hotKani, quantidade: 10),
+      ModelItemCarrinho(item: hotRool, quantidade: 2),
+      ModelItemCarrinho(item: hotRool, quantidade: 3),
+      ModelItemCarrinho(item: hotRool, quantidade: 4),
+      ModelItemCarrinho(item: hotRool, quantidade: 8),
+    ],
+  ),
+  //PEDIDO 3
+  ModelPedido(
+    id: "LKD-0521",
+    total: 50.0,
+    copyAndPaste: "dsasdaadsd",
+    statusPedido: 'Pedido aceito',
+    dataCriacao: DateTime.parse(
+      '2023-01-01 10:05:10.250',
+    ),
+    validadeQRCode: DateTime.parse(
+      '2024-01-01 11:11:11.250',
+    ),
+    itensPedido: [
+      ModelItemCarrinho(item: comboHot30Pecas, quantidade: 5),
+      ModelItemCarrinho(item: comboPastel, quantidade: 1),
+      ModelItemCarrinho(item: niguiriBarrigaSalmao, quantidade: 10),
+      ModelItemCarrinho(item: niguiriSalmao, quantidade: 20),
+    ],
+  ),
+  //PEDIDO 4
+  ModelPedido(
+    id: "LKD-0521",
+    total: 50.0,
+    copyAndPaste: "dsasdaadsd",
+    statusPedido: 'Pagamento devolvido',
+    dataCriacao: DateTime.parse(
+      '2023-01-01 10:05:10.250',
+    ),
+    validadeQRCode: DateTime.parse(
+      '2024-01-01 11:11:11.250',
+    ),
+    itensPedido: [
+      ModelItemCarrinho(item: comboHot30Pecas, quantidade: 5),
+      ModelItemCarrinho(item: comboPastel, quantidade: 1),
+      ModelItemCarrinho(item: niguiriBarrigaSalmao, quantidade: 10),
+      ModelItemCarrinho(item: niguiriSalmao, quantidade: 20),
+    ],
+  ),
+  //PEDIDO 5
+  ModelPedido(
+    id: "LKD-0521",
+    total: 50.0,
+    copyAndPaste: "dsasdaadsd",
+    statusPedido: 'Em produção',
+    dataCriacao: DateTime.parse(
+      '2023-01-01 10:05:10.250',
+    ),
+    validadeQRCode: DateTime.parse(
+      '2024-01-01 11:11:11.250',
+    ),
+    itensPedido: [
+      ModelItemCarrinho(item: comboHot30Pecas, quantidade: 5),
+      ModelItemCarrinho(item: comboPastel, quantidade: 1),
+      ModelItemCarrinho(item: niguiriBarrigaSalmao, quantidade: 10),
+      ModelItemCarrinho(item: niguiriSalmao, quantidade: 20),
+    ],
+  ),
 ];

@@ -32,7 +32,7 @@ class _LoginState extends State<Login> {
                   decoration: const BoxDecoration(
                     //IMAGEM OXE SUSHI
                     image: DecorationImage(
-                      image: AssetImage('imagens/logo.png'),
+                      image: AssetImage('imagens/imagens_oxesushi/logo.png'),
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -45,35 +45,53 @@ class _LoginState extends State<Login> {
                 ),
                 child: SizedBox(
                   height: 50,
-                  child: ElevatedButton.icon(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: CustomColors.colorAppVermelho,
-                      shape: RoundedRectangleBorder(
-                        side: BorderSide(
-                          width: 1,
-                          color: CustomColors.colorAppVermelho,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Colors.white,
+                          offset: Offset(0, 5),
+                          blurRadius: 10,
+                          spreadRadius: -5,
                         ),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
+                      ],
                     ),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (BuildContext context) =>
-                              const DetalhesDoProduto(
-                            key: Key("123"),
+                    child: ElevatedButton.icon(
+                      style: ElevatedButton.styleFrom(
+                        elevation: 4,
+                        shadowColor: Colors.white,
+                        backgroundColor: CustomColors.colorAppVermelho,
+                        shape: RoundedRectangleBorder(
+                          side: BorderSide(
+                            width: 2,
+                            color: CustomColors.colorAppVermelho,
                           ),
+                          borderRadius: BorderRadius.circular(10),
                         ),
-                      );
-                    },
-                    icon: const Icon(
-                      Icons.restaurant_menu,
-                      size: 35,
-                    ),
-                    label: const Text(
-                      "CARDÁPIO",
-                      style: TextStyle(fontSize: 25, color: Colors.white),
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                                const DetalhesDoProduto(
+                              key: Key("123"),
+                            ),
+                          ),
+                        );
+                      },
+                      icon: const Icon(
+                        Icons.restaurant_menu,
+                        size: 35,
+                      ),
+                      label: const Text(
+                        "CARDÁPIO",
+                        style: TextStyle(
+                          fontSize: 25,
+                          color: Colors.white,
+                        ),
+                      ),
                     ),
                   ),
                 ),
