@@ -77,7 +77,7 @@ class WidgetQuantidade extends StatelessWidget {
                 ],
                 // Quando modificado o valor do campo de texto recebemos este novo valor aqui
                 // Convertemos o valor porque o campo trabalha com String e o nosso Widget de quantidade com int
-                onChanged: (value) {
+                /* onChanged: (value) {
                   result(int.parse(value));
                   quantityController.text = value;
                   WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -85,16 +85,10 @@ class WidgetQuantidade extends StatelessWidget {
                     quantityController.selection = TextSelection.fromPosition(
                         TextPosition(offset: value.length));
                   });
-                },
-                /*  onTap: () {
-                  result(int.parse(quantityController.text));
-                  quantityController.text = quantityController.text.toString();
-                  WidgetsBinding.instance.addPostFrameCallback((_) {
-                    // Move o cursor para o final do campo de texto
-                    quantityController.selection = TextSelection.fromPosition(
-                        TextPosition(offset: quantityController.text.length));
-                  });
                 }, */
+                onTap: () {
+                  result(int.parse(quantityController.text));
+                },
                 decoration: const InputDecoration(
                   // Retirando a borda
                   border: InputBorder.none,
@@ -108,6 +102,7 @@ class WidgetQuantidade extends StatelessWidget {
               ),
             ),
           ),
+          //Adicionando quantidade na widget
           _WidgetQuantidade(
             icon: Icons.add,
             color: CustomColors.colorAppVerde,
@@ -115,7 +110,6 @@ class WidgetQuantidade extends StatelessWidget {
               // Comando para remover o teclado
               FocusScope.of(context).unfocus();
               int resultCount = int.parse(quantityController.text) + 1;
-              //if (resultCount == 1 && !isRemovable) return;
               result(resultCount);
             },
           ),

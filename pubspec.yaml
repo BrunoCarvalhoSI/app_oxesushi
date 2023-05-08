@@ -41,6 +41,7 @@ dependencies:
   badges: ^2.0.1
   intl: ^0.18.0 
   flutter_easyloading: ^3.0.0
+  qr_flutter: ^4.0.0
 
 dev_dependencies:
   flutter_test:

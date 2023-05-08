@@ -124,7 +124,8 @@ List<ModelPedido> pedidos = [
     id: "FBHK-1025",
     total: 50.0,
     copyAndPaste: "dsasdaadsd",
-    statusPedido: "Pedido recusado",
+    statusPedido: "Pedido cancelado",
+    statusPagamento: "Pagamento em cartão",
     dataCriacao: DateTime.parse(
       '2023-01-01 10:05:10.250',
     ),
@@ -151,7 +152,8 @@ List<ModelPedido> pedidos = [
     id: "ASKD-0521",
     total: 50.0,
     copyAndPaste: "dsasdaadsd",
-    statusPedido: "Em produção",
+    statusPedido: "Entregue",
+    statusPagamento: "PAGO via pix",
     dataCriacao: DateTime.parse(
       '2024-01-01 10:05:10.250',
     ),
@@ -176,6 +178,7 @@ List<ModelPedido> pedidos = [
     total: 50.0,
     copyAndPaste: "dsasdaadsd",
     statusPedido: 'Pedido aceito',
+    statusPagamento: 'Pagamento em dinheiro',
     dataCriacao: DateTime.parse(
       '2023-01-01 10:05:10.250',
     ),
@@ -194,12 +197,13 @@ List<ModelPedido> pedidos = [
     id: "LKD-0521",
     total: 50.0,
     copyAndPaste: "dsasdaadsd",
-    statusPedido: 'Pagamento devolvido',
+    statusPedido: 'Pedido aceito',
+    statusPagamento: 'Pix pendente',
     dataCriacao: DateTime.parse(
       '2023-01-01 10:05:10.250',
     ),
     validadeQRCode: DateTime.parse(
-      '2024-01-01 11:11:11.250',
+      '2024-05-08 16:11:11.250',
     ),
     itensPedido: [
       ModelItemCarrinho(item: comboHot30Pecas, quantidade: 5),
@@ -214,11 +218,12 @@ List<ModelPedido> pedidos = [
     total: 50.0,
     copyAndPaste: "dsasdaadsd",
     statusPedido: 'Em produção',
+    statusPagamento: 'Pix vencido',
     dataCriacao: DateTime.parse(
       '2023-01-01 10:05:10.250',
     ),
     validadeQRCode: DateTime.parse(
-      '2024-01-01 11:11:11.250',
+      '2023-03-24 11:11:11.250',
     ),
     itensPedido: [
       ModelItemCarrinho(item: comboHot30Pecas, quantidade: 5),

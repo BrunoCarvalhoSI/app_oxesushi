@@ -4,6 +4,7 @@ import 'package:oxesushi_v1/screens/carrinho/componentes/tile_carrinho.dart';
 import 'package:oxesushi_v1/services/utils_services.dart';
 import 'package:oxesushi_v1/config/mock_dados.dart' as mock;
 import '../../models/ModelItemCarrinho.dart';
+import '../../widgets/payment_dialog.dart';
 
 class TelaCarrinho extends StatefulWidget {
   const TelaCarrinho({Key key}) : super(key: key);
@@ -99,7 +100,16 @@ class _TelaCarrinhoState extends State<TelaCarrinho> {
                     ),
                     onPressed: () async {
                       bool result = await mostrarConfirmarPedido();
-                      print(result);
+                      if (result ?? false) {
+                        showDialog(
+                          context: context,
+                          builder: (_) {
+                            return PaymentDialog(
+                              pedido: mock.pedidos[4],
+                            );
+                          },
+                        );
+                      }
                     },
                     child: const Text(
                       "Concluir pedido",

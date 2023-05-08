@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:oxesushi_v1/componentes/custom_colors.dart';
 import 'package:oxesushi_v1/models/ModelPedidos.dart';
-import 'package:oxesushi_v1/screens/pedidos/componentes/widget_pedido_status.dart';
+import 'package:oxesushi_v1/widgets/payment_dialog.dart';
+import 'package:oxesushi_v1/widgets/widget_pedido_status.dart';
 import 'package:oxesushi_v1/services/utils_services.dart';
 
 import '../../../models/ModelItemCarrinho.dart';
@@ -38,9 +39,10 @@ class PedidoTile extends StatelessWidget {
               ),
               Text(
                 utilsServices.formatDateTime(pedido.dataCriacao),
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 12,
-                  color: CustomColors.colorAppVermelho,
+                  color: Colors.blueGrey,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ],
@@ -77,7 +79,8 @@ class PedidoTile extends StatelessWidget {
                   Expanded(
                     flex: 2,
                     child: StatusPedidoWidget(
-                      status: pedido.statusPedido,
+                      statusPedido: pedido.statusPedido,
+                      statusPagamento: pedido.statusPagamento,
                       estaVencido:
                           pedido.validadeQRCode.isBefore(DateTime.now()),
                     ),
@@ -105,20 +108,40 @@ class PedidoTile extends StatelessWidget {
               ),
             ),
             //BOTAO DE PAGAMENTO
-            Visibility(
-              child: ElevatedButton.icon(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: CustomColors.colorAppVerde,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
+            Padding(
+              padding: const EdgeInsets.only(
+                top: 10,
+              ),
+              child: SizedBox(
+                height: 40,
+                child: Visibility(
+                  visible: pedido.statusPagamento == 'Pix pendente' &&
+                      pedido.statusPedido == 'Pedido aceito' &&
+                      !pedido.validadeQRCode.isBefore(DateTime.now()),
+                  child: ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: CustomColors.colorAppVerde,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                    ),
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (_) {
+                          return PaymentDialog(
+                            pedido: pedido,
+                          );
+                        },
+                      );
+                    },
+                    icon: Image.asset(
+                      'imagens/imagens_app/pix.png',
+                      height: 20,
+                    ),
+                    label: const Text("Ver QR Code Pix"),
                   ),
                 ),
-                onPressed: () {},
-                icon: Image.asset(
-                  'imagens/imagens_app/pix.png',
-                  height: 18,
-                ),
-                label: const Text("Ver QR Code Pix"),
               ),
             ),
           ],

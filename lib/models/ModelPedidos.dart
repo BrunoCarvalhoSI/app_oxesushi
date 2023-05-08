@@ -7,6 +7,7 @@ class ModelPedido {
   DateTime validadeQRCode;
   List<ModelItemCarrinho> itensPedido;
   String statusPedido;
+  String statusPagamento;
   String copyAndPaste;
   double total;
 
@@ -16,6 +17,7 @@ class ModelPedido {
     this.validadeQRCode,
     this.itensPedido,
     this.statusPedido,
+    this.statusPagamento,
     this.copyAndPaste,
     this.total,
   });
