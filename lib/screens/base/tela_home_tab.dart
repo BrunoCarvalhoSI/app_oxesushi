@@ -1,4 +1,3 @@
-import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:oxesushi_v1/screens/base/componentes/tile_produto.dart';
 import '../../componentes/custom_colors.dart';
@@ -52,8 +51,8 @@ class _TelaHomeState extends State<TelaHome> {
             child: GestureDetector(
               onTap: () {},
               child: Badge(
-                badgeColor: CustomColors.colorAppVermelho,
-                badgeContent: const Text(
+                backgroundColor: CustomColors.colorAppVermelho,
+                label: const Text(
                   "1",
                   style: TextStyle(
                     fontSize: 12,
