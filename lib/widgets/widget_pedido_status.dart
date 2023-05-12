@@ -25,14 +25,14 @@ class StatusPedidoWidget extends StatelessWidget {
     'PAGO via pix': -6,
   };
 
-  int get statusPedidoAtual => todosStatus[statusPedido];
-  int get statusPagamentoAtual => todosStatusPagamento[statusPagamento];
+  int? get statusPedidoAtual => todosStatus[statusPedido];
+  int? get statusPagamentoAtual => todosStatusPagamento[statusPagamento];
 
   StatusPedidoWidget({
-    Key key,
-    this.estaVencido,
-    this.statusPedido,
-    this.statusPagamento,
+    Key? key,
+    required this.estaVencido,
+    required this.statusPedido,
+    required this.statusPagamento,
   }) : super(key: key);
 
   @override
@@ -43,29 +43,29 @@ class StatusPedidoWidget extends StatelessWidget {
         ...[
           _StatusDoPagamento(
             isActive: statusPagamentoAtual == -1,
-            titulo: "Pagamento em dinheiro",
+            titulo: "Pagamento em dinheiro",backgroundcolor: Colors.green
           ),
-          const _CustomDivisorStatus(),
+           _CustomDivisorStatus(),
           _StatusDoPagamento(
             isActive: statusPagamentoAtual == -2,
-            titulo: "Pagamento em cartão",
+            titulo: "Pagamento em cartão",backgroundcolor: Colors.green
           ),
-          const _CustomDivisorStatus(),
+           _CustomDivisorStatus(),
           _StatusDoPagamento(
             isActive: statusPagamentoAtual == -3,
-            titulo: "Pix pendente",
+            titulo: "Pix pendente",backgroundcolor: Colors.green
           ),
-          const _CustomDivisorStatus(),
+           _CustomDivisorStatus(),
           _StatusDoPagamento(
             isActive: statusPagamentoAtual == -4,
-            titulo: "Pix vencido",
+            titulo: "Pix vencido",backgroundcolor: Colors.green
           ),
-          const _CustomDivisorStatus(),
+           _CustomDivisorStatus(),
           _StatusDoPagamento(
             isActive: statusPagamentoAtual == -5,
-            titulo: "Pix devolvido",
+            titulo: "Pix devolvido",backgroundcolor: Colors.green
           ),
-          const _CustomDivisorStatus(),
+           _CustomDivisorStatus(),
           _StatusDoPagamento(
             isActive: statusPagamentoAtual == -6,
             titulo: "PAGO via pix",
@@ -92,36 +92,36 @@ class StatusPedidoWidget extends StatelessWidget {
           //const _CustomDivisorStatus(),
           _StatusDoPedido(
             isActive: statusPedidoAtual == 0,
-            titulo: "Pedido em analise",
+            titulo: "Pedido em analise",backgroundcolor: Colors.green
           ),
-          const _CustomDivisorStatus(),
+           _CustomDivisorStatus(),
           _StatusDoPedido(
             isActive: statusPedidoAtual == 1,
             titulo: "Pedido recusado",
             backgroundcolor: Colors.red,
           ),
-          const _CustomDivisorStatus(),
+           _CustomDivisorStatus(),
           _StatusDoPedido(
             isActive: statusPedidoAtual == 2,
-            titulo: "Pedido aceito",
+            titulo: "Pedido aceito",backgroundcolor: Colors.green
           ),
           const _CustomDivisorStatus(),
-          _StatusDoPedido(
+           _StatusDoPedido(
             isActive: statusPedidoAtual == 3,
-            titulo: "Em produção",
+            titulo: "Em produção", backgroundcolor: Colors.green,
           ),
-          const _CustomDivisorStatus(),
+           _CustomDivisorStatus(),
           _StatusDoPedido(
             isActive: statusPedidoAtual == 4,
-            titulo: "Enviado",
+            titulo: "Enviado",backgroundcolor: Colors.green,
           ),
-          const _CustomDivisorStatus(),
+           _CustomDivisorStatus(),
           _StatusDoPedido(
             isActive: statusPedidoAtual == 5,
             titulo: "Entregue",
             backgroundcolor: Colors.blue,
           ),
-          const _CustomDivisorStatus(),
+           _CustomDivisorStatus(),
           _StatusDoPedido(
             isActive: statusPedidoAtual == 6,
             titulo: "Pedido cancelado",
@@ -139,10 +139,10 @@ class _StatusDoPedido extends StatelessWidget {
   final Color backgroundcolor;
 
   const _StatusDoPedido({
-    Key key,
-    this.isActive,
-    this.titulo,
-    this.backgroundcolor,
+    Key? key,
+    required this.isActive,
+    required this.titulo,
+    required this.backgroundcolor,
   }) : super(key: key);
 
   @override
@@ -160,7 +160,7 @@ class _StatusDoPedido extends StatelessWidget {
               color: CustomColors.colorAppVerde,
             ),
             color: isActive
-                ? backgroundcolor ?? CustomColors.colorAppVerde
+                ? CustomColors.colorAppVerde
                 : Colors.transparent,
           ),
           child: isActive
@@ -194,10 +194,10 @@ class _StatusDoPagamento extends StatelessWidget {
   final Color backgroundcolor;
 
   const _StatusDoPagamento({
-    Key key,
-    this.isActive,
-    this.titulo,
-    this.backgroundcolor,
+    Key? key,
+    required this.isActive,
+    required this.titulo,
+    required this.backgroundcolor,
   }) : super(key: key);
 
   @override
@@ -215,7 +215,7 @@ class _StatusDoPagamento extends StatelessWidget {
               color: CustomColors.colorAppVerde,
             ),
             color: isActive
-                ? backgroundcolor ?? CustomColors.colorAppVerde
+                ? CustomColors.colorAppVerde
                 : Colors.transparent,
           ),
           child: isActive
@@ -244,7 +244,7 @@ class _StatusDoPagamento extends StatelessWidget {
 }
 
 class _CustomDivisorStatus extends StatelessWidget {
-  const _CustomDivisorStatus({Key key}) : super(key: key);
+  const _CustomDivisorStatus({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

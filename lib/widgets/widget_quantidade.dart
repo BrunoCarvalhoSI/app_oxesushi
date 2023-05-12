@@ -1,40 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import '../componentes/custom_colors.dart';
+import 'package:oxesushi_v1/componentes/custom_colors.dart';
 
 class WidgetQuantidade extends StatelessWidget {
-  final int quantidade;
+  final int value;
   final String suffixText;
   final Function(int quantity) result;
   final bool isRemovable;
 
   WidgetQuantidade({
-    Key key,
-    this.quantidade,
-    this.suffixText,
-    this.result,
+    Key? key,
+    required this.suffixText,
+    required this.value,
+    required this.result,
     this.isRemovable = false,
-    this.quantityController,
   }) : super(key: key) {
     // Instanciando o controlador do campo de texto com o valor inicial
-    quantityController = TextEditingController(text: quantidade.toString());
+    quantityController = TextEditingController(text: value.toString());
 
     // Adicionando um listener que é chamando sempre que o campo de texto é alterado
     // A ideia é verifiar se o campo está vazio ou igual a zero e se sim, trocar para "1"
-    /*    quantityController.addListener(() {
+    quantityController.addListener(() {
       final text = quantityController.text;
       if (text.isEmpty || text == '0') {
         quantityController.text = '1';
       }
-    }); */
+    });
   }
 
   // Controlador que irá gerenciar o valor do campo de texto
-  TextEditingController quantityController;
+  late final TextEditingController quantityController;
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: const EdgeInsets.all(4),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(50),
@@ -49,20 +49,21 @@ class WidgetQuantidade extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          _WidgetQuantidade(
-            icon: !isRemovable || quantidade > 1
-                ? Icons.remove
-                : Icons.delete_forever,
-            color: !isRemovable || quantidade > 1 ? Colors.grey : Colors.red,
+          _QuantityButton(
+            icon:
+                !isRemovable || value > 1 ? Icons.remove : Icons.delete_forever,
+            color: !isRemovable || value > 1 ? Colors.grey : Colors.red,
             onPressed: () {
               // Comando para remover o teclado
               FocusScope.of(context).unfocus();
-              int qtdAtualizada = int.parse(quantityController.text);
-              if (qtdAtualizada == 1 && !isRemovable) return;
-              int resultCount = qtdAtualizada - 1;
+
+              if (value == 1 && !isRemovable) return;
+
+              int resultCount = value - 1;
               result(resultCount);
             },
           ),
+          // Widget para permitir que o campo texto cresça o suficiente para apresentar seu valor
           IntrinsicWidth(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 6),
@@ -77,18 +78,7 @@ class WidgetQuantidade extends StatelessWidget {
                 ],
                 // Quando modificado o valor do campo de texto recebemos este novo valor aqui
                 // Convertemos o valor porque o campo trabalha com String e o nosso Widget de quantidade com int
-                /* onChanged: (value) {
-                  result(int.parse(value));
-                  quantityController.text = value;
-                  WidgetsBinding.instance.addPostFrameCallback((_) {
-                    // Move o cursor para o final do campo de texto
-                    quantityController.selection = TextSelection.fromPosition(
-                        TextPosition(offset: value.length));
-                  });
-                }, */
-                onTap: () {
-                  result(int.parse(quantityController.text));
-                },
+                onChanged: (value) => result(int.parse(value)),
                 decoration: const InputDecoration(
                   // Retirando a borda
                   border: InputBorder.none,
@@ -96,20 +86,19 @@ class WidgetQuantidade extends StatelessWidget {
                   isDense: true,
                   // Para remover todo o espaçamento interno padrão do campo
                   contentPadding: EdgeInsets.zero,
-                  // Adicionando o texto de sufixo a unidade de medida
-                  // suffixText: suffixText,
+                  // Adicionando o texto de sufixo
+                  //suffixText: suffixText,
                 ),
               ),
             ),
           ),
-          //Adicionando quantidade na widget
-          _WidgetQuantidade(
+          _QuantityButton(
             icon: Icons.add,
             color: CustomColors.colorAppVerde,
             onPressed: () {
               // Comando para remover o teclado
               FocusScope.of(context).unfocus();
-              int resultCount = int.parse(quantityController.text) + 1;
+              int resultCount = value + 1;
               result(resultCount);
             },
           ),
@@ -119,22 +108,23 @@ class WidgetQuantidade extends StatelessWidget {
   }
 }
 
-class _WidgetQuantidade extends StatelessWidget {
+class _QuantityButton extends StatelessWidget {
   final Color color;
   final IconData icon;
   final VoidCallback onPressed;
 
-  const _WidgetQuantidade({
-    Key key,
-    this.color,
-    this.icon,
-    this.onPressed,
+  const _QuantityButton({
+    Key? key,
+    required this.color,
+    required this.icon,
+    required this.onPressed,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Material(
       child: InkWell(
+        borderRadius: BorderRadius.circular(50),
         onTap: onPressed,
         child: Ink(
           height: 25,

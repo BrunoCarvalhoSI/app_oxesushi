@@ -4,7 +4,7 @@ import 'package:oxesushi_v1/widgets/custom_text_field.dart';
 import 'package:oxesushi_v1/config/mock_dados.dart' as mock;
 
 class TelaPerfil extends StatefulWidget {
-  const TelaPerfil({Key key}) : super(key: key);
+  const TelaPerfil({Key? key}) : super(key: key);
 
   @override
   State<TelaPerfil> createState() => _TelaPerfilState();
@@ -77,13 +77,13 @@ class _TelaPerfilState extends State<TelaPerfil> {
     );
   }
 
-  Future<bool> atualizarSenha() {
+  Future<bool?> atualizarSenha() {
     return showDialog(
       context: context,
       builder: (context) {
         return Dialog(
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(20),
           ),
           child: Stack(
             children: [
@@ -93,13 +93,11 @@ class _TelaPerfilState extends State<TelaPerfil> {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   mainAxisSize: MainAxisSize.min,
                   children: [
+                    // Titulo
                     const Padding(
-                      padding: EdgeInsets.symmetric(
-                        vertical: 12,
-                      ),
-                      //Titulo
+                      padding: EdgeInsets.symmetric(vertical: 12),
                       child: Text(
-                        "Atualização de senha",
+                        'Atualização de senha',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 18,
@@ -107,34 +105,39 @@ class _TelaPerfilState extends State<TelaPerfil> {
                         ),
                       ),
                     ),
-                    //Campo senha atual
+
+                    // Senha atual
                     const CustomTextField(
                       isSecret: true,
                       icon: Icons.lock,
-                      label: 'Senha atual',
+                      label: 'Senha atual', textoInicial: '',
                     ),
-                    //Campo nova senha
+
+                    // Nova senha
                     const CustomTextField(
                       isSecret: true,
                       icon: Icons.lock_outline,
-                      label: 'Nova senha',
+                      label: 'Nova senha', textoInicial: '',
                     ),
-                    //Campo confirmar nova senha
+
+                    // Confirmação nova senha
                     const CustomTextField(
                       isSecret: true,
                       icon: Icons.lock_outline,
-                      label: 'Confirmar nova senha',
+                      label: 'Confirmar nova senha', textoInicial: '',
                     ),
-                    //botao de confirmacao
+
+                    // Botão de confirmação
                     SizedBox(
                       height: 45,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        )),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                        ),
                         onPressed: () {},
-                        child: const Text("Atualizar"),
+                        child: const Text('Atualizar'),
                       ),
                     ),
                   ],
@@ -144,12 +147,11 @@ class _TelaPerfilState extends State<TelaPerfil> {
                 top: 5,
                 right: 5,
                 child: IconButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    icon: const Icon(
-                      Icons.close,
-                    )),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  icon: const Icon(Icons.close),
+                ),
               ),
             ],
           ),

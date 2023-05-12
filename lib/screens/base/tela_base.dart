@@ -7,7 +7,7 @@ import '../pedidos/tela_pedidos_tab.dart';
 import '../perfil/tela_perfil_tab.dart';
 
 class TelaBase extends StatefulWidget {
-  const TelaBase({Key key}) : super(key: key);
+  const TelaBase({Key? key}) : super(key: key);
 
   @override
   State<TelaBase> createState() => _TelaBaseState();
@@ -23,7 +23,7 @@ class _TelaBaseState extends State<TelaBase> {
       body: PageView(
         physics: const NeverScrollableScrollPhysics(),
         controller: pageControler,
-        children: const [
+        children:  [
           TelaHome(),
           TelaCarrinho(),
           TelaPedidos(),

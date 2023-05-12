@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:oxesushi_v1/models/ModelPedidos.dart';
 import 'package:oxesushi_v1/services/utils_services.dart';
@@ -9,7 +8,7 @@ import 'package:qr_flutter/qr_flutter.dart';
 class PaymentDialog extends StatelessWidget {
   final ModelPedido pedido;
 
-  PaymentDialog({Key key, this.pedido}) : super(key: key);
+  PaymentDialog({Key? key, required this.pedido}) : super(key: key);
 
   final UtilsServices utilsServices = UtilsServices();
 

@@ -5,18 +5,20 @@ class CustomTextField extends StatefulWidget {
   final IconData icon;
   final String label;
   final bool isSecret;
+  final List<TextInputFormatter>? inputFormatters;
+  final String? textoInicial;
   final bool readOnly;
-  final List<TextInputFormatter> inputFormatters;
-  final String textoInicial;
+  final TextInputType keyboardType; // Nova propriedade
 
   const CustomTextField({
-    Key key,
-    this.icon,
-    this.label,
+    Key? key,
+    required this.icon,
+    required this.label,
     this.isSecret = false,
-    this.readOnly = false,
     this.inputFormatters,
     this.textoInicial,
+    this.readOnly = false,
+    this.keyboardType = TextInputType.text, // Nova propriedade retirada do teclado somente numeros
   }) : super(key: key);
 
   @override
@@ -38,10 +40,11 @@ class _CustomTextFieldState extends State<CustomTextField> {
     return Padding(
       padding: const EdgeInsets.only(bottom: 15),
       child: TextFormField(
-        initialValue: widget.textoInicial,
-        inputFormatters: widget.inputFormatters,
         readOnly: widget.readOnly,
+        initialValue: widget.textoInicial,
         obscureText: isObscure,
+        inputFormatters: widget.inputFormatters,
+        keyboardType: widget.keyboardType,
         decoration: InputDecoration(
           prefixIcon: Icon(widget.icon),
           suffixIcon: widget.isSecret
@@ -52,7 +55,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
                     });
                   },
                   icon:
-                      Icon(isObscure ? Icons.visibility_off : Icons.visibility),
+                      Icon(isObscure ? Icons.visibility : Icons.visibility_off),
                 )
               : null,
           labelText: widget.label,
@@ -65,3 +68,4 @@ class _CustomTextFieldState extends State<CustomTextField> {
     );
   }
 }
+

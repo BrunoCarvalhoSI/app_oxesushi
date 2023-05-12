@@ -12,13 +12,13 @@ class ModelPedido {
   double total;
 
   ModelPedido({
-    this.id,
-    this.dataCriacao,
-    this.validadeQRCode,
-    this.itensPedido,
-    this.statusPedido,
-    this.statusPagamento,
-    this.copyAndPaste,
-    this.total,
+    required this.id,
+    required this.dataCriacao,
+    required this.validadeQRCode,
+    required this.itensPedido,
+    required this.statusPedido,
+    required this.statusPagamento,
+    required this.copyAndPaste,
+    required this.total,
   });
 }

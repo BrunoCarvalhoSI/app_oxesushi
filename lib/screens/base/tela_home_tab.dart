@@ -5,7 +5,7 @@ import '../../config/mock_dados.dart' as mockDados;
 import 'componentes/tile_categoria.dart';
 
 class TelaHome extends StatefulWidget {
-  const TelaHome({Key key}) : super(key: key);
+  const TelaHome({Key? key}) : super(key: key);
 
   @override
   State<TelaHome> createState() => _TelaHomeState();
@@ -136,7 +136,7 @@ class _TelaHomeState extends State<TelaHome> {
               itemCount: mockDados.listaProdutos.length,
               itemBuilder: (_, index) {
                 return ProdutoTile(
-                  produto: mockDados.listaProdutos[index],
+                  produto: mockDados.listaProdutos[index], key: null,
                 );
               },
             ),

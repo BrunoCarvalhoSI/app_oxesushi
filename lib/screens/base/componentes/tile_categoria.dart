@@ -4,10 +4,10 @@ import '../../../componentes/custom_colors.dart';
 
 class CategoriaTile extends StatelessWidget {
   CategoriaTile({
-    Key key,
-    this.categoria,
-    this.isSelected,
-    this.onPressed,
+    Key? key,
+    required this.categoria,
+    required this.isSelected,
+    required this.onPressed,
   }) : super(key: key);
 
   String categoria;

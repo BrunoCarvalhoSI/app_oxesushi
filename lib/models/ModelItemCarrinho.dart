@@ -5,8 +5,8 @@ class ModelItemCarrinho {
   int quantidade;
 
   ModelItemCarrinho({
-    this.item,
-    this.quantidade,
+    required this.item,
+    required this.quantidade,
   });
 
   double precoTotal() => item.preco * quantidade;

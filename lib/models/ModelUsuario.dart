@@ -9,11 +9,11 @@ class ModelUsuario {
   final String celular;
 
   ModelUsuario({
-    this.id,
-    this.email,
-    this.senha,
-    this.nome,
-    this.cpf,
-    this.celular,
+    required this.id,
+    required  this.email,
+    required this.senha,
+    required this.nome,
+    required this.cpf,
+    required this.celular,
   });
 }

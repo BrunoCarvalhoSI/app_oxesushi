@@ -4,10 +4,9 @@ import 'base/tela_base.dart';
 import '../screens/tela_cadastro_usuario.dart';
 import '../componentes/custom_colors.dart';
 import '../widgets/custom_text_field.dart';
-import 'tela_detalhes_produto.dart';
 
 class Login extends StatefulWidget {
-  const Login({Key key}) : super(key: key);
+  const Login({Key? key}) : super(key: key);
 
   @override
   State<Login> createState() => _LoginState();
@@ -69,17 +68,6 @@ class _LoginState extends State<Login> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (BuildContext context) =>
-                                const DetalhesDoProduto(
-                              key: Key("123"),
-                            ),
-                          ),
-                        );
-                      },
                       icon: const Icon(
                         Icons.restaurant_menu,
                         size: 35,
@@ -90,7 +78,7 @@ class _LoginState extends State<Login> {
                           fontSize: 25,
                           color: Colors.white,
                         ),
-                      ),
+                      ), onPressed: () {  },
                     ),
                   ),
                 ),

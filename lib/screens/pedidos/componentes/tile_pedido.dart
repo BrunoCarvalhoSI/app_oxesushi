@@ -11,8 +11,8 @@ class PedidoTile extends StatelessWidget {
   final ModelPedido pedido;
 
   PedidoTile({
-    Key key,
-    this.pedido,
+    Key? key,
+    required this.pedido,
   }) : super(key: key);
 
   final UtilsServices utilsServices = UtilsServices();
@@ -153,8 +153,8 @@ class PedidoTile extends StatelessWidget {
 
 class _ItemDoPedidoWidget extends StatelessWidget {
   const _ItemDoPedidoWidget({
-    Key key,
-    this.itemPedido,
+    Key? key,
+    required this.itemPedido,
   }) : super(key: key);
 
   final ModelItemCarrinho itemPedido;

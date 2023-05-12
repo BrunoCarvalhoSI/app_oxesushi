@@ -3,7 +3,7 @@ import 'package:oxesushi_v1/config/mock_dados.dart' as mock;
 import 'package:oxesushi_v1/screens/pedidos/componentes/tile_pedido.dart';
 
 class TelaPedidos extends StatelessWidget {
-  const TelaPedidos({Key key}) : super(key: key);
+  const TelaPedidos({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

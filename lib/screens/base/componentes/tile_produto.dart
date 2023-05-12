@@ -8,8 +8,8 @@ class ProdutoTile extends StatelessWidget {
   final ModelProduto produto;
 
   ProdutoTile({
-    Key key,
-    this.produto,
+    Key? key,
+    required this.produto,
   }) : super(key: key);
 
   final UtilsServices utilsServices = UtilsServices();

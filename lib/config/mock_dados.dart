@@ -8,63 +8,63 @@ ModelProduto niguiriSalmao = ModelProduto(
   imageUrl: 'imagens/imagens_produtos/niguiriTransparente.png',
   nome: "Niguiri de Salmão",
   preco: 3.50,
-  undMedida: "und",
+  undMedida: "und",id: '9'
 );
 ModelProduto niguiriBarrigaSalmao = ModelProduto(
   descricao: 'Arroz com fatia de Salmão Maçaricado',
   imageUrl: 'imagens/imagens_produtos/niguiriBarriga.png',
   nome: "Niguiri Barriga",
   preco: 3.00,
-  undMedida: "und",
+  undMedida: "und",id: '8'
 );
 ModelProduto hotRool = ModelProduto(
   descricao: 'Salmão,Camarão,Kani,Arroz na massinha',
   imageUrl: 'imagens/imagens_produtos/hotRool.png',
   nome: "Hot Rool",
   preco: 2.00,
-  undMedida: "und",
+  undMedida: "und",id: '7'
 );
 ModelProduto hotSalmao = ModelProduto(
   descricao: 'Salmão',
   imageUrl: 'imagens/imagens_produtos/hotCamarao.png',
   nome: "Hot Salmão",
   preco: 2.50,
-  undMedida: "und",
+  undMedida: "und",id: '6'
 );
 ModelProduto hotKani = ModelProduto(
   descricao: 'Kani',
   imageUrl: 'imagens/imagens_produtos/hotCamarao.png',
   nome: "Hot Kani",
   preco: 2.00,
-  undMedida: "und",
+  undMedida: "und",id: '5'
 );
 ModelProduto comboHotCamarao = ModelProduto(
   descricao: '18 unidades de Combo hot Camarão',
   imageUrl: 'imagens/imagens_produtos/hotSalmao.png',
   nome: "Hot Camarão",
   preco: 17.00,
-  undMedida: "und",
+  undMedida: "und",id: '4'
 );
 ModelProduto comboHot30Pecas = ModelProduto(
   descricao: '10 hot salmão, 10 hot rool, 10 hot kani',
   imageUrl: 'imagens/imagens_produtos/hot30.png',
   nome: "Hot 30 Peças",
   preco: 55.00,
-  undMedida: "und",
+  undMedida: "und",id: '3'
 );
 ModelProduto comboPastel = ModelProduto(
   descricao: 'Combo de Pastel',
   imageUrl: 'imagens/imagens_produtos/hotCamarao.png',
   nome: "Combo de Pastel",
   preco: 22.00,
-  undMedida: "und",
+  undMedida: "und",id: '2'
 );
 ModelProduto comboNutella = ModelProduto(
   descricao: 'Nutella',
   imageUrl: 'imagens/imagens_produtos/hotCamarao.png',
   nome: "Combo de Nutella",
   preco: 17.00,
-  undMedida: "und",
+  undMedida: "und",id: '1',
 );
 
 ModelUsuario usuario = ModelUsuario(
@@ -73,6 +73,7 @@ ModelUsuario usuario = ModelUsuario(
   email: 'brunocarvalhoifs@gmail.com',
   nome: 'Bruno Carvalho',
   senha: "123546",
+  id: '1',
 );
 
 List<ModelProduto> listaProdutos = [

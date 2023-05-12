@@ -9,11 +9,11 @@ class ModelProduto {
   final String undMedida;
 
   ModelProduto({
-    this.id,
-    this.nome,
-    this.preco,
-    this.imageUrl,
-    this.descricao,
-    this.undMedida,
+    required this.id,
+    required this.nome,
+    required this.preco,
+    required this.imageUrl,
+    required  this.descricao,
+    required this.undMedida,
   });
 }

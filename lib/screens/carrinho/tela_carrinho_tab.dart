@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:oxesushi_v1/componentes/custom_colors.dart';
+import 'package:oxesushi_v1/config/mock_dados.dart' as mock;
 import 'package:oxesushi_v1/screens/carrinho/componentes/tile_carrinho.dart';
 import 'package:oxesushi_v1/services/utils_services.dart';
-import 'package:oxesushi_v1/config/mock_dados.dart' as mock;
+
 import '../../models/ModelItemCarrinho.dart';
 import '../../widgets/payment_dialog.dart';
 
 class TelaCarrinho extends StatefulWidget {
-  const TelaCarrinho({Key key}) : super(key: key);
+  const TelaCarrinho({Key? key}) : super(key: key);
 
   @override
   State<TelaCarrinho> createState() => _TelaCarrinhoState();
@@ -44,16 +45,17 @@ class _TelaCarrinhoState extends State<TelaCarrinho> {
               itemCount: mock.itensCarrinho.length,
               itemBuilder: (_, index) {
                 return CarrinhoTile(
-                    itemCarrinho: mock.itensCarrinho[index],
-                    remove: removerItemCarrinho,
-                    atualizarTotalCarrinho: (qtd) {
-                      if (qtd == 0) {
-                        removerItemCarrinho(mock.itensCarrinho[index]);
-                      } else {
-                        setState(
-                            () => mock.itensCarrinho[index].quantidade = qtd);
-                      }
-                    });
+                  itemCarrinho: mock.itensCarrinho[index],
+                  remove: removerItemCarrinho,
+                  atualizarTotalCarrinho: (qtd) {
+                    if (qtd == 0) {
+                      removerItemCarrinho(mock.itensCarrinho[index]);
+                    } else {
+                      setState(
+                          () => mock.itensCarrinho[index].quantidade = qtd);
+                    }
+                  },
+                );
               },
             ),
           ),
@@ -100,7 +102,8 @@ class _TelaCarrinhoState extends State<TelaCarrinho> {
                     ),
                     onPressed: () async {
                       bool result = await mostrarConfirmarPedido();
-                      if (result ?? false) {
+                      if (result) {
+                        // ignore: use_build_context_synchronously
                         showDialog(
                           context: context,
                           builder: (_) {

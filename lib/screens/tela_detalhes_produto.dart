@@ -8,8 +8,8 @@ class DetalhesDoProduto extends StatefulWidget {
   final ModelProduto produto;
 
   const DetalhesDoProduto({
-    Key key,
-    this.produto,
+    Key? key,
+    required this.produto,
   }) : super(key: key);
 
   @override
@@ -70,7 +70,8 @@ class _DetalhesDoProdutoState extends State<DetalhesDoProduto> {
                             ),
                           ),
                           WidgetQuantidade(
-                            quantidade: qtdDoCarrinho,
+                            value: qtdDoCarrinho,
+                            //quantityController: TextEditingController(text: qtdDoCarrinho.toString()),
                             suffixText: widget.produto.undMedida,
                             result: (qtd) {
                               setState(() {
@@ -155,7 +156,7 @@ class _DetalhesDoProdutoState extends State<DetalhesDoProduto> {
                 ),
               ),
             ),
-          )
+          ),
         ],
       ),
     );
