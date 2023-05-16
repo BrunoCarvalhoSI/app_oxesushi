@@ -8,7 +8,8 @@ import '../../models/ModelItemCarrinho.dart';
 import '../../widgets/payment_dialog.dart';
 
 class TelaCarrinho extends StatefulWidget {
-  const TelaCarrinho({Key? key}) : super(key: key);
+  TelaCarrinho({Key? key}) : super(key: key);
+  final UtilsServices utilsServices = UtilsServices();
 
   @override
   State<TelaCarrinho> createState() => _TelaCarrinhoState();
@@ -20,6 +21,8 @@ class _TelaCarrinhoState extends State<TelaCarrinho> {
   void removerItemCarrinho(ModelItemCarrinho itemCarrinho) {
     setState(() {
       mock.itensCarrinho.remove(itemCarrinho);
+      utilsServices.showToast(message: '${itemCarrinho.item.nome} removido do carrinho ');
+
     });
   }
 
@@ -112,6 +115,8 @@ class _TelaCarrinhoState extends State<TelaCarrinho> {
                             );
                           },
                         );
+                      }else{
+                        utilsServices.showToast(message: 'Pedido não confirmado',isError: true,);
                       }
                     },
                     child: const Text(

@@ -6,10 +6,13 @@ import 'package:oxesushi_v1/services/utils_services.dart';
 
 class ProdutoTile extends StatelessWidget {
   final ModelProduto produto;
+  final void Function(GlobalKey) cartAnimationMethod;
+  final GlobalKey imageGk = GlobalKey();
 
   ProdutoTile({
     Key? key,
     required this.produto,
+    required this.cartAnimationMethod,
   }) : super(key: key);
 
   final UtilsServices utilsServices = UtilsServices();
@@ -39,11 +42,25 @@ class ProdutoTile extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  //Imagem
+                  // //Imagem
+                  // Expanded(
+                  //   child: Hero(
+                  //     tag: produto.imageUrl,
+                  //     child: Container(
+                  //       key: imageGk,
+                  //       child: Image.network(
+                  //         produto.imageUrl,
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
                   Expanded(
                     child: Hero(
                       tag: produto.imageUrl,
-                      child: Image.asset(produto.imageUrl),
+                      child: Image.asset(
+                        produto.imageUrl,
+                        key: imageGk,
+                      ),
                     ),
                   ),
                   //Nome
@@ -84,7 +101,9 @@ class ProdutoTile extends StatelessWidget {
           top: 4,
           right: 4,
           child: GestureDetector(
-            onTap: () {},
+            onTap: () {
+              cartAnimationMethod(imageGk);
+            },
             child: Container(
               height: 40,
               width: 35,

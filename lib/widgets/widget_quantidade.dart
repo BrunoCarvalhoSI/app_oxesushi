@@ -79,6 +79,7 @@ class WidgetQuantidade extends StatelessWidget {
                 // Quando modificado o valor do campo de texto recebemos este novo valor aqui
                 // Convertemos o valor porque o campo trabalha com String e o nosso Widget de quantidade com int
                 onChanged: (value) => result(int.parse(value)),
+
                 decoration: const InputDecoration(
                   // Retirando a borda
                   border: InputBorder.none,
