@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:oxesushi_v1/models/ModelPedidos.dart';
 import 'package:oxesushi_v1/services/utils_services.dart';
 import 'package:qr_flutter/qr_flutter.dart';
@@ -38,10 +36,11 @@ class PaymentDialog extends StatelessWidget {
                   ),
                 ),
                 //QR CODE
-                QrImage(
-                  data: "1234567890",
+                QrImageView(
+                  data: 'This is a simple QR code',
                   version: QrVersions.auto,
-                  size: 200.0,
+                  size: 320,
+                  gapless: false,
                 ),
                 //VENCIMENTO
                 Text(

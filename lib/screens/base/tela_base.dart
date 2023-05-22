@@ -23,11 +23,11 @@ class _TelaBaseState extends State<TelaBase> {
       body: PageView(
         physics: const NeverScrollableScrollPhysics(),
         controller: pageControler,
-        children:  [
-          TelaHome(),
+        children: [
+          const TelaHome(),
           TelaCarrinho(),
-          TelaPedidos(),
-          TelaPerfil(),
+          const TelaPedidos(),
+          const TelaPerfil(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -36,6 +36,11 @@ class _TelaBaseState extends State<TelaBase> {
           setState(() {
             currentIndex = index;
             pageControler.jumpToPage(index);
+            // pageControler.animateToPage(
+            //   index,
+            //   duration: const Duration(milliseconds: 800),
+            //   curve: Curves.linear,
+            // );
           });
         },
         selectedItemColor: CustomColors.colorAppVermelho,

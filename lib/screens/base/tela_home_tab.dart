@@ -1,5 +1,5 @@
 import 'package:add_to_cart_animation/add_to_cart_animation.dart';
-import 'package:add_to_cart_animation/add_to_cart_icon.dart';
+import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
 import 'package:oxesushi_v1/screens/base/componentes/tile_produto.dart';
 
@@ -17,11 +17,14 @@ class TelaHome extends StatefulWidget {
 class _TelaHomeState extends State<TelaHome> {
   String categoriaSelecionada = 'Cru';
 
-  GlobalKey<CartIconKey> globalkeyCartItems = GlobalKey<CartIconKey>();
+  GlobalKey<CartIconKey> globalKeyCartItems = GlobalKey<CartIconKey>();
   late Function(GlobalKey) runAddToCartAnimation;
+  var _cartQuantityItems = 0;
 
-  void itemSelectedCartAnimations(GlobalKey gkImage) {
-    runAddToCartAnimation(gkImage);
+  void itemSelectedCartAnimations(GlobalKey widgetKey) async {
+    await runAddToCartAnimation(widgetKey);
+    await globalKeyCartItems.currentState!
+        .runCartAnimation((++_cartQuantityItems).toString());
   }
 
   @override
@@ -58,35 +61,36 @@ class _TelaHomeState extends State<TelaHome> {
               top: 15,
               right: 30,
             ),
-            child: GestureDetector(
-              onTap: () {},
-              child: Badge(
-                backgroundColor: CustomColors.colorAppVermelho,
-                label: const Text(
-                  "2",
-                  style: TextStyle(
-                    fontSize: 12,
-                    color: Colors.white,
-                  ),
-                ),
-                child: AddToCartIcon(
-                  key: globalkeyCartItems,
-                  icon:const Icon(
-                    Icons.shopping_cart,
-                  ),
+            child: badges.Badge(
+              badgeContent: const Text(
+                '2',
+                style: TextStyle(color: Colors.white, fontSize: 11),
+              ),
+              badgeAnimation: const badges.BadgeAnimation.slide(),
+              position: badges.BadgePosition.topEnd(top: -18, end: 3),
+              showBadge: true,
+              ignorePointer: false,
+              child: AddToCartIcon(
+                key: globalKeyCartItems,
+                icon: const Icon(
+                  Icons.shopping_cart,
                 ),
               ),
             ),
           ),
         ],
       ),
-
       body: AddToCartAnimation(
-        gkCart: globalkeyCartItems,
-        previewDuration: const Duration(milliseconds: 100),
-        previewCurve: Curves.ease,
-        receiveCreateAddToCardAnimationMethod: (AddToCartAnimation) {
-          runAddToCartAnimation = AddToCartAnimation;
+        cartKey: globalKeyCartItems,
+        height: 30,
+        width: 30,
+        opacity: 0.85,
+        dragAnimation: const DragToCartAnimationOptions(
+          rotation: true,
+        ),
+        jumpAnimation: const JumpAnimationOptions(),
+        createAddToCartAnimation: (runAddToCartAnimation) {
+          this.runAddToCartAnimation = runAddToCartAnimation;
         },
         child: Column(
           children: [
@@ -156,9 +160,8 @@ class _TelaHomeState extends State<TelaHome> {
                 itemCount: mockDados.listaProdutos.length,
                 itemBuilder: (_, index) {
                   return ProdutoTile(
-                    produto: mockDados.listaProdutos[index],
-                    cartAnimationMethod:itemSelectedCartAnimations
-                  );
+                      produto: mockDados.listaProdutos[index],
+                      cartAnimationMethod: itemSelectedCartAnimations);
                 },
               ),
             )

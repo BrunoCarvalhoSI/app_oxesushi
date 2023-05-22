@@ -1,21 +1,36 @@
 import 'package:flutter/material.dart';
-import 'package:oxesushi_v1/componentes/custom_colors.dart';
-import 'package:oxesushi_v1/models/ModelProduto.dart';
-import 'package:oxesushi_v1/screens/tela_detalhes_produto.dart';
-import 'package:oxesushi_v1/services/utils_services.dart';
 
-class ProdutoTile extends StatelessWidget {
+import '../../../componentes/custom_colors.dart';
+import '../../../models/ModelProduto.dart';
+import '../../../services/utils_services.dart';
+import '../../tela_detalhes_produto.dart';
+
+class ProdutoTile extends StatefulWidget {
   final ModelProduto produto;
   final void Function(GlobalKey) cartAnimationMethod;
-  final GlobalKey imageGk = GlobalKey();
 
-  ProdutoTile({
+  const ProdutoTile({
     Key? key,
     required this.produto,
     required this.cartAnimationMethod,
   }) : super(key: key);
 
+  @override
+  State<ProdutoTile> createState() => _ProdutoTileState();
+}
+
+class _ProdutoTileState extends State<ProdutoTile> {
+  final GlobalKey imageGk = GlobalKey();
+
   final UtilsServices utilsServices = UtilsServices();
+
+  IconData tileIcon =  Icons.add_shopping_cart_outlined;
+
+  Future<void> switchIcon() async{
+    setState(() =>tileIcon = Icons.check);
+    await Future.delayed(const Duration(milliseconds: 2000));
+    setState(() =>tileIcon = Icons.add_shopping_cart_outlined);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +41,7 @@ class ProdutoTile extends StatelessWidget {
             Navigator.of(context).push(MaterialPageRoute(
               builder: (c) {
                 return DetalhesDoProduto(
-                  produto: produto,
+                  produto: widget.produto,
                 );
               },
             ));
@@ -42,40 +57,28 @@ class ProdutoTile extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  // //Imagem
-                  // Expanded(
-                  //   child: Hero(
-                  //     tag: produto.imageUrl,
-                  //     child: Container(
-                  //       key: imageGk,
-                  //       child: Image.network(
-                  //         produto.imageUrl,
-                  //       ),
-                  //     ),
-                  //   ),
-                  // ),
                   Expanded(
                     child: Hero(
-                      tag: produto.imageUrl,
-                      child: Image.asset(
-                        produto.imageUrl,
+                      tag: widget.produto.imageUrl,
+                      child: Container(
                         key: imageGk,
+                        child: Image.asset(
+                          widget.produto.imageUrl,
+                        ),
                       ),
                     ),
                   ),
-                  //Nome
                   Text(
-                    produto.nome,
+                    widget.produto.nome,
                     style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  //Preço - unidade de medida
                   Row(
                     children: [
                       Text(
-                        utilsServices.priceToCurrency(produto.preco),
+                        utilsServices.priceToCurrency(widget.produto.preco),
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
@@ -83,7 +86,7 @@ class ProdutoTile extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        '/${produto.undMedida}',
+                        '/${widget.produto.undMedida}',
                         style: TextStyle(
                             color: Colors.grey.shade500,
                             fontWeight: FontWeight.bold,
@@ -96,28 +99,34 @@ class ProdutoTile extends StatelessWidget {
             ),
           ),
         ),
-        //Botao de Adicionar ao Carrinho
+        //BOTAO ADD CARRINHO
         Positioned(
           top: 4,
           right: 4,
-          child: GestureDetector(
-            onTap: () {
-              cartAnimationMethod(imageGk);
-            },
-            child: Container(
-              height: 40,
-              width: 35,
-              decoration: BoxDecoration(
-                color: CustomColors.colorAppVerde,
-                borderRadius: const BorderRadius.only(
-                  bottomLeft: Radius.circular(15),
-                  topRight: Radius.circular(20),
+          child: ClipRRect(
+            borderRadius: const BorderRadius.only(
+              bottomLeft: Radius.circular(15),
+              topRight: Radius.circular(20),
+            ),
+            child: Material(
+              child: InkWell(
+                onTap: () async {
+                  switchIcon();
+                  widget.cartAnimationMethod(imageGk);
+                },
+                child: Ink(
+                  height: 40,
+                  width: 35,
+                  decoration: BoxDecoration(
+                    color: CustomColors.colorAppVerde,
+
+                  ),
+                  child: Icon(
+                    tileIcon,
+                    color: Colors.white,
+                    size: 25,
+                  ),
                 ),
-              ),
-              child: const Icon(
-                Icons.add_shopping_cart_outlined,
-                color: Colors.white,
-                size: 25,
               ),
             ),
           ),

@@ -16,7 +16,11 @@ class WidgetQuantidade extends StatelessWidget {
     this.isRemovable = false,
   }) : super(key: key) {
     // Instanciando o controlador do campo de texto com o valor inicial
-    quantityController = TextEditingController(text: value.toString());
+    quantityController = TextEditingController(
+      text: value.toString(),
+    )..selection = TextSelection.collapsed(
+        offset: value.toString().length,
+      );
 
     // Adicionando um listener que é chamando sempre que o campo de texto é alterado
     // A ideia é verifiar se o campo está vazio ou igual a zero e se sim, trocar para "1"
